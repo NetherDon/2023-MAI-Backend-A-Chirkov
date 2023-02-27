@@ -10,9 +10,10 @@ class LRUCache:
         return str(self._cache)
 
     def get(self, key: str) -> str:
-        value = self._cache.pop(key)
-        self._cache[key] = value
-        return value
+        value = self._cache.pop(key, None)
+        if value is not None:
+            self._cache[key] = value
+        return value or ""
 
     def set(self, key: str, value: str) -> None:
         self._cache.pop(key, None)
